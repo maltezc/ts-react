@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Box from "./Box";
+import { BoxesInterface, BoxInterface } from "./Interfaces";
 import NewBoxForm from "./NewBoxForm";
 
 /** Manage list of boxes
@@ -9,10 +10,10 @@ import NewBoxForm from "./NewBoxForm";
  */
 
 function BoxList() {
-  const [boxes, setBoxes] = useState([])
+  const [boxes, setBoxes] = useState<BoxesInterface[]>([])
 
   /** add box with given { id, width, height, backgroundColor } */
-  function add(newBox) {
+  function add(newBox: BoxInterface)  {
     setBoxes(boxes => [...boxes, newBox]);
   }
 
@@ -24,7 +25,7 @@ function BoxList() {
   return (
     <div>
       <NewBoxForm createBox={add} />
-      {boxes.map(({ id, width, height, backgroundColor }) => (
+      {boxes.map(({ id, width, height, backgroundColor }: BoxInterface) => (
         <Box
           key={id}
           id={id}
